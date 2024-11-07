@@ -6,10 +6,14 @@ import { toast } from "react-toastify";
 
 // type Context = {hello: string}
 
+interface CartItem extends ProductType {
+  qty: number; // Adding qty property to the product type
+}
+
 const CartContext = createContext<any>(undefined);
 
 export const CartWrapper = ({ children }: { children: React.ReactNode }) => {
-  let [cart, setCart] = useState([]);
+  let [cart, setCart] = useState<CartItem[]>([]);
   let [totalAmount, setTotalAmount] = useState(0);
 
   useEffect(() => {
@@ -25,14 +29,14 @@ export const CartWrapper = ({ children }: { children: React.ReactNode }) => {
     );
   };
 
-  const addItemToCart = async (product: ProductType) => {
+  const addItemToCart = async (product: CartItem) => {
     let existsItemIndex = cart.findIndex(
       (item: any) => item.id === product?.id
     );
     if (existsItemIndex >= 0) {
       cart[existsItemIndex].qty += 1;
     } else {
-      let buildItem = { ...product };
+      let buildItem = { ...product };      
       cart?.push(buildItem);
     }
     let stringArray = JSON.stringify(cart);

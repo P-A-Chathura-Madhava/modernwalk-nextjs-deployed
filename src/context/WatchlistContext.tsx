@@ -4,6 +4,10 @@ import { ProductType } from "@/hooks/types/ProductType";
 import { createContext, useContext, useEffect, useState } from "react";
 import { toast } from "react-toastify";
 
+interface WatchlistItem extends ProductType {
+  color: string | undefined;
+}
+
 const WatchlistContext = createContext<any>(undefined);
 
 export const WatchlistWrapper = ({
@@ -11,7 +15,7 @@ export const WatchlistWrapper = ({
 }: {
   children: React.ReactNode;
 }) => {
-  let [watchlist, setWatchlist] = useState([]);
+  let [watchlist, setWatchlist] = useState<WatchlistItem[]>([]);
 
   useEffect(() => {
     setWatchlistToState();
@@ -26,14 +30,14 @@ export const WatchlistWrapper = ({
     );
   };
 
-  const addItemWatchlist = async (product: ProductType) => {
+  const addItemWatchlist = async (product: WatchlistItem) => {
     let existsItemIndex = watchlist.findIndex(
       (item: any) => item.id === product?.id
     );
     if (existsItemIndex >= 0) {
       toast.error("This product already exists in the wishlist");
     } else {
-      let buildItem = { ...product };
+      let buildItem = { ...product };      
       watchlist?.push(buildItem);
       let stringArray = JSON.stringify(watchlist);
       localStorage.setItem("watchlistItems", stringArray);

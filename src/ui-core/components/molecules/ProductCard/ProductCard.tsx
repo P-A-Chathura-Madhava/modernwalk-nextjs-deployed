@@ -1,3 +1,4 @@
+import Link from "next/link";
 import ProductCardImage from "./ProductCardImage";
 import ProductDetail from "./ProductDetail";
 
