@@ -6,10 +6,11 @@ import ProductDetailTitle from "@/ui-core/components/atoms/Product-Detail/Produc
 import ProductDetailCategory from "@/ui-core/components/atoms/Product-Detail/ProductDetailCategory";
 import ProductDetailDescription from "@/ui-core/components/atoms/Product-Detail/ProductDetailDescription";
 import ProductDetailPrice from "@/ui-core/components/atoms/Product-Detail/ProductDetailPrice";
-import BackToMensProductsButton from "@/ui-core/components/atoms/Product-Detail/BackToMensProductsButton";
 import BuyNowButton from "@/ui-core/components/atoms/Product-Detail/BuyNowButton";
 import AddToCartButton from "@/ui-core/components/atoms/Product-Detail/AddToCartButton";
 import ProductDetailImage from "@/ui-core/components/atoms/Product-Detail/ProductDetailImage";
+import BackToProductsButton from "@/ui-core/components/atoms/Product-Detail/BackToProductsButton";
+import { useCartContext } from "@/context/CartContext";
 
 function ProductDetailsPage({ ...props }) {
   const productId = props.id;
@@ -18,10 +19,12 @@ function ProductDetailsPage({ ...props }) {
     queryFn: () => getProductDetail(productId),
   });
 
+
+
   return (
     <div className="container mx-auto mt-2 px-60 font-poppins">
       <div>
-        <BackToMensProductsButton />
+        <BackToProductsButton />
       </div>
       <div className="flex justify-between">
         <div className="w-[48%] h-[400px] border p-4 flex justify-center items-center">
@@ -34,7 +37,7 @@ function ProductDetailsPage({ ...props }) {
           <ProductDetailPrice {...{ price: data?.price }} />
           <div className="flex flex-col gap-2 mt-4">
             <BuyNowButton />
-            <AddToCartButton />
+            <AddToCartButton {...{data: data}} />
           </div>
         </div>
       </div>
