@@ -30,3 +30,12 @@ export const getMixedProducts = async (): Promise<ProductType[]> => {
   const data: ProductType[] = mensData.concat(womensData);
   return data;
 };
+
+export const getProductDetail = async (
+  productId: string
+): Promise<ProductType> => {
+  const response: AxiosResponse<ProductType> = await axios.get<ProductType>(
+    `${URL2}/${productId}`
+  );
+  return response.data;
+};
