@@ -32,7 +32,7 @@ function CartDetailsPage() {
 
               {/* Cart Item */}
               {cart.map((item: any, index: number) => {
-                return <CartItem {...{ item: item }} />;
+                return <CartItem key={index} {...{ item: item }} />;
               })}
             </div>
           </div>
