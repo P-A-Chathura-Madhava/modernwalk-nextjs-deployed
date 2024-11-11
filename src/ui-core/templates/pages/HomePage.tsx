@@ -1,3 +1,4 @@
+"use client";
 import useGetMixedProducts from "@/hooks/useGetMixedProducts";
 import HomeSection from "@/ui-core/layouts/HomeSection";
 
