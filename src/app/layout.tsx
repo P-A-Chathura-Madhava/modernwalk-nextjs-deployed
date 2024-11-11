@@ -32,7 +32,7 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body className={inter.className}>
-        <ClerkProvider publishableKey={PUBLISHABLE_KEY}>
+        <ClerkProvider publishableKey={'pk_test_bWF4aW11bS10YXJwb24tMC5jbGVyay5hY2NvdW50cy5kZXYk'}>
           <Drawer>
             <CartWrapper>
               <WatchlistWrapper>
